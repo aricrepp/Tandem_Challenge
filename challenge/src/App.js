@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './App.css';
+import Questions from './components/Questions';
+import confetti from './assets/confetti.gif';
+import './app_root.css';
 
 function App() {
   const [trivia, setTrivia] = useState();
@@ -11,7 +13,7 @@ function App() {
       .get('https://opentdb.com/api.php?amount=10&type=multiple')
       .then((res) => {
         console.log(res.data);
-        setTrivia(res.data);
+        setTrivia(res.data.results);
         setIsFetching(true);
       })
       .catch((err) => {
@@ -19,7 +21,17 @@ function App() {
       });
   }, []);
 
-  return <div className="App"></div>;
+  return (
+    <div className="app_root">
+      <div className="confetti"></div>
+      <header className="app_header">
+        <h1> Test Your Trivia!</h1>
+      </header>
+      <section className="app_container">
+        <Questions questions={trivia} />
+      </section>
+    </div>
+  );
 }
 
 export default App;
