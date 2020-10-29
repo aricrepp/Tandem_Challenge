@@ -1,0 +1,25 @@
+{
+  "name": "tandom_challenge",
+  "version": "1.0.0",
+  "description": "tandem 2020 code challenge",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "challenge": "^1.0.7",
+    "create-react-app": "^4.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aricrepp/Tandem_Challenge.git"
+  },
+  "author": "aric repp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aricrepp/Tandem_Challenge/issues"
+  },
+  "homepage": "https://github.com/aricrepp/Tandem_Challenge#readme"
+}

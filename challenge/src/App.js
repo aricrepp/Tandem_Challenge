@@ -6,6 +6,7 @@ import './app_root.css';
 
 function App() {
   const [trivia, setTrivia] = useState();
+  const [newSet, setNewSet] = useState(0);
   const [isFetching, setIsFetching] = useState(false);
 
   useEffect(() => {
@@ -19,16 +20,22 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [newSet]);
 
   return (
     <div className="app_root">
       <div className="confetti"></div>
       <header className="app_header">
-        <h1> Test Your Trivia!</h1>
+        <h1 className="f1_h1">Trivia</h1>
+        <h1 className="f2_h1">Night</h1>
       </header>
       <section className="app_container">
-        <Questions questions={trivia} />
+        <Questions
+          questions={trivia}
+          fetched={isFetching}
+          change={newSet}
+          setChange={setNewSet}
+        />
       </section>
     </div>
   );

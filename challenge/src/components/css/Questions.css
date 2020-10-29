@@ -1,0 +1,27 @@
+.questions_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60vw;
+  height: 90vh;
+  border: red 1px solid;
+}
+
+.questions_container h1 {
+  font-size: 6rem;
+  padding: 0;
+  margin: 0;
+}
+
+.answers_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.answers_container button {
+  height: 200px;
+  width: 200px;
+}

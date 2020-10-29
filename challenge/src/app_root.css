@@ -7,18 +7,96 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(248, 251, 255);
+  background-color: rgb(80, 91, 102);
 }
 
-.app_root h1 {
+.f1_h1 {
   font-size: 4rem;
+  font-family: Audiowide;
+  color: #ffdd1b;
   margin: 0;
   padding: 0;
+  text-shadow: 2px 2px 2px black;
 }
+
+.f2_h1 {
+  font-size: 4rem;
+  font-family: Pacifico;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  -webkit-animation: neon2 1.5s ease-in-out infinite alternate;
+  -moz-animation: neon2 1.5s ease-in-out infinite alternate;
+  animation: neon2 1.5s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes neon2 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff1177,
+      0 0 50px #ff1177, 0 0 60px #ff1177, 0 0 70px #ff1177, 0 0 80px #ff1177;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff1177,
+      0 0 35px #ff1177, 0 0 40px #ff1177, 0 0 50px #ff1177, 0 0 75px #ff1177;
+  }
+}
+@keyframes neon2 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff1177,
+      0 0 50px #ff1177, 0 0 60px #ff1177, 0 0 70px #ff1177, 0 0 80px #ff1177;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff1177,
+      0 0 35px #ff1177, 0 0 40px #ff1177, 0 0 50px #ff1177, 0 0 75px #ff1177;
+  }
+}
+@-moz-keyframes neon2 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff1177,
+      0 0 70px #ff1177, 0 0 80px #ff1177, 0 0 100px #ff1177, 0 0 150px #ff1177;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff1177,
+      0 0 35px #ff1177, 0 0 40px #ff1177, 0 0 50px #ff1177, 0 0 75px #ff1177;
+  }
+}
+
+/* @-webkit-keyframes neon1 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff, 0 0 50px #fff3b0,
+      0 0 55px #fff3b0, 0 0 60px #fff3b0, 0 0 65px #fff3b0, 0 0 70px #fff3b0;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff3b0,
+      0 0 35px #fff3b0, 0 0 40px #fff3b0, 0 0 50px #fff3b0, 0 0 75px #fff3b0;
+  }
+}
+
+@-moz-keyframes neon1 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff, 0 0 50px #fff3b0,
+      0 0 55px #fff3b0, 0 0 60px #fff3b0, 0 0 65px #fff3b0, 0 0 70px #fff3b0;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff3b0,
+      0 0 35px #fff3b0, 0 0 40px #fff3b0, 0 0 50px #fff3b0, 0 0 75px #fff3b0;
+  }
+}
+
+@keyframes neon1 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff, 0 0 50px #fff3b0,
+      0 0 55px #fff3b0, 0 0 60px #fff3b0, 0 0 65px #fff3b0, 0 0 70px #fff3b0;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff3b0,
+      0 0 35px #fff3b0, 0 0 40px #fff3b0, 0 0 50px #fff3b0, 0 0 75px #fff3b0;
+  }
+} */
 
 .app_header {
   width: 60vw;
-  height: 100px;
+  height: 10vh;
   display: flex;
 
   justify-content: center;
@@ -35,6 +113,9 @@
 
 .app_container {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 60vw;
   height: 100vh;
 }
