@@ -3,8 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Chip from '@material-ui/core/Chip';
 import './css/Questions.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -17,6 +15,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     padding: '20px 50px 0 50px',
     fontFamily: 'Arial Black, Gadget, sans-serif',
+    '@media (max-width: 500px)': {
+      display: 'flex',
+      flexDirection: 'column',
+      width: '70vw',
+      padding: '20px 20px 0 20px',
+    },
   },
   content_body: {
     color: '#333',
@@ -27,9 +31,33 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     flexDirection: 'column',
     width: '80%',
+    '@media (max-width: 1440px)': {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+    },
+    '@media (max-width: 1024px)': {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+    },
+    '@media (max-width: 768px)': {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+    },
     '@media (max-width: 500px)': {
       display: 'flex',
       flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
     },
   },
   content_text: {
@@ -47,6 +75,18 @@ const useStyles = makeStyles((theme) => ({
     padding: '1rem',
     fontFamily: 'Arial Black, Gadget, sans-serif',
     color: '#333',
+    '@media (max-width: 768px)': {
+      width: '70%',
+      textAlign: 'center',
+      fontSize: '0.8rem',
+      padding: '1.5rem',
+    },
+    '@media (max-width: 500px)': {
+      width: '80%',
+      textAlign: 'center',
+      fontSize: '0.8rem',
+      padding: '1.5rem',
+    },
   },
   loading: {
     display: 'flex',
@@ -62,47 +102,29 @@ const Questions = (props) => {
   const classes = useStyles();
   const [counter, setCounter] = useState(0);
   const [score, setScore] = useState(0);
+  const [highscore, setHighscore] = useState(score);
 
   const createAnswers = () => {
     if (props.fetched) {
-      const correct = props.questions[counter].correct_answer;
-      const inc1 = props.questions[counter].incorrect_answers[0];
-      const inc2 = props.questions[counter].incorrect_answers[1];
-      const inc3 = props.questions[counter].incorrect_answers[2];
-      let array = [];
-      array.push(correct, inc1, inc2, inc3);
-      let newArray = shuffle(array);
-      return displayAnswers(newArray);
-    }
-  };
+      console.log(props.questions);
+      let array = props.questions[counter].all_answers_shuffled;
 
-  const displayAnswers = (array) => {
-    return array.map((e, key) => {
-      console.log(e);
-      return (
-        <button
-          key={key}
-          className={
-            e === props.questions[counter].correct_answer ? 'green' : 'red'
-          }
-          onClick={(e) => handleChoice(e)}
-          dangerouslySetInnerHTML={{
-            __html: e,
-          }}
-        ></button>
-      );
-    });
-  };
-
-  const shuffle = (a) => {
-    var j, x, i;
-    for (i = a.length - 1; i > 0; i--) {
-      j = Math.floor(Math.random() * (i + 1));
-      x = a[i];
-      a[i] = a[j];
-      a[j] = x;
+      return array.map((e, key) => {
+        console.log(e);
+        return (
+          <button
+            key={key}
+            className={
+              e === props.questions[counter].correct_answer ? 'green' : 'red'
+            }
+            onClick={(e) => handleChoice(e)}
+            dangerouslySetInnerHTML={{
+              __html: e,
+            }}
+          ></button>
+        );
+      });
     }
-    return a;
   };
 
   const handleNextQuestion = (e) => {
@@ -126,6 +148,9 @@ const Questions = (props) => {
     e.preventDefault();
     setScore(0);
     counterTimeout(0);
+    if (score > highscore) {
+      setHighscore(score);
+    }
   };
 
   const handleChoice = (e) => {
@@ -158,10 +183,13 @@ const Questions = (props) => {
       <section className="questions_container">
         <div className={score === 10 ? 'confetti_show' : null}></div>
         <Typography className={classes.heading_text}>
-          It's trivia night here! Name of the game is to get a positive score
-          with a special suprise if you manage to get all 10 questions correct!
+          It's trivia night here! Name of the game is to get a positive score.
+          Unlock the special suprise by getting all 10 questions correct!
         </Typography>
         <Card className={classes.content}>
+          <div className="highscore">
+            <h4>highscore: {highscore}</h4>
+          </div>
           <h2 className="questions_h2">SCORE: {score}</h2>
           <CardContent className={classes.content_body}>
             <section key={counter}>

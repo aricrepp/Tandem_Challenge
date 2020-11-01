@@ -3,11 +3,9 @@
   height: 100vh;
   padding: 0;
   margin: 0;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background-color: rgb(80, 91, 102); */
   background-color: #2d2e2e;
 }
 

@@ -14,13 +14,33 @@ function App() {
       .get('https://opentdb.com/api.php?amount=10&type=multiple')
       .then((res) => {
         console.log(res.data);
-        setTrivia(res.data.results);
+        // setTrivia(res.data.results);
+        setTrivia(
+          res.data.results.map((result) => ({
+            ...result,
+            all_answers_shuffled: shuffle(
+              result.incorrect_answers.concat(result.correct_answer)
+            ),
+          }))
+        );
+        console.log(trivia);
         setIsFetching(true);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [newSet]);
+
+  const shuffle = (a) => {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      x = a[i];
+      a[i] = a[j];
+      a[j] = x;
+    }
+    return a;
+  };
 
   return (
     <div className="app_root">
