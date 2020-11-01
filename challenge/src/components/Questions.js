@@ -16,16 +16,45 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     padding: '20px 50px 0 50px',
+    fontFamily: 'Arial Black, Gadget, sans-serif',
   },
   content_body: {
-    color: 'grey',
+    color: '#333',
     fontSize: '0.9rem',
     padding: '0.5rem',
-    width: '60%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    width: '80%',
     '@media (max-width: 500px)': {
       display: 'flex',
       flexDirection: 'column',
     },
+  },
+  content_text: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  heading_text: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '50%',
+    textAlign: 'center',
+    fontSize: '0.9rem',
+    padding: '1rem',
+    fontFamily: 'Arial Black, Gadget, sans-serif',
+    color: '#333',
+  },
+  loading: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: '1.5rem',
+    textTransform: 'uppercase',
+    height: '100vh',
   },
 }));
 
@@ -88,7 +117,7 @@ const Questions = (props) => {
 
     const timer = setTimeout(() => {
       setCounter(e);
-    }, 200);
+    }, 100);
 
     return timer;
   };
@@ -104,12 +133,20 @@ const Questions = (props) => {
     console.log(e);
     console.log(e.target.textContent);
     console.log('clicked');
+    let greenButton = document.querySelector('.green');
+    let redButton = document.querySelectorAll('.red');
+
+    greenButton.setAttribute('style', 'background-color: #69b57881');
+    redButton.forEach((e) => {
+      e.setAttribute('style', 'background-color: #db546181');
+    });
 
     if (e.target.textContent === props.questions[counter].correct_answer) {
       setScore(score + 1);
     } else {
       setScore(score - 1);
     }
+
     let buttons = document.querySelectorAll('button');
     buttons.forEach((e) => {
       e.disabled = true;
@@ -119,11 +156,17 @@ const Questions = (props) => {
   if (props.fetched) {
     return (
       <section className="questions_container">
+        <div className={score === 10 ? 'confetti_show' : null}></div>
+        <Typography className={classes.heading_text}>
+          It's trivia night here! Name of the game is to get a positive score
+          with a special suprise if you manage to get all 10 questions correct!
+        </Typography>
         <Card className={classes.content}>
-          <h1 className="questions_h1">{score}</h1>
+          <h2 className="questions_h2">SCORE: {score}</h2>
           <CardContent className={classes.content_body}>
             <section key={counter}>
               <Typography
+                className={classes.content_text}
                 dangerouslySetInnerHTML={{
                   __html: props.questions[counter].question,
                 }}
@@ -137,7 +180,7 @@ const Questions = (props) => {
                   onClick={(e) => handleNextQuestion(e)}
                   className="questions_button_next"
                 >
-                  Next >
+                  Next
                 </div>
               ) : (
                 <div
@@ -153,7 +196,7 @@ const Questions = (props) => {
       </section>
     );
   } else {
-    return <div>Loading...</div>;
+    return <Typography className={classes.loading}>Loading...</Typography>;
   }
 };
 

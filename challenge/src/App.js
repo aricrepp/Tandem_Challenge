@@ -24,7 +24,6 @@ function App() {
 
   return (
     <div className="app_root">
-      <div className="confetti"></div>
       <header className="app_header">
         <h1 className="f1_h1">Trivia</h1>
         <h1 className="f2_h1">Night</h1>
