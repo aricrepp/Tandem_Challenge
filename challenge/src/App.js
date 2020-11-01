@@ -29,14 +29,13 @@ function App() {
         <h1 className="f1_h1">Trivia</h1>
         <h1 className="f2_h1">Night</h1>
       </header>
-      <section className="app_container">
-        <Questions
-          questions={trivia}
-          fetched={isFetching}
-          change={newSet}
-          setChange={setNewSet}
-        />
-      </section>
+
+      <Questions
+        questions={trivia}
+        fetched={isFetching}
+        change={newSet}
+        setChange={setNewSet}
+      />
     </div>
   );
 }
