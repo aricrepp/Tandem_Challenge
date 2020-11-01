@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import './css/Questions.css';
 
+// Material UI component styles
+//
 const useStyles = makeStyles((theme) => ({
   content: {
     display: 'flex',
@@ -104,13 +106,14 @@ const Questions = (props) => {
   const [score, setScore] = useState(0);
   const [highscore, setHighscore] = useState(score);
 
+  // Maps through and creates the answers for each question once the data has been fetched.
+  // Returns an individual question based on counter state
+  //
   const createAnswers = () => {
     if (props.fetched) {
-      console.log(props.questions);
       let array = props.questions[counter].all_answers_shuffled;
 
       return array.map((e, key) => {
-        console.log(e);
         return (
           <button
             key={key}
@@ -127,13 +130,16 @@ const Questions = (props) => {
     }
   };
 
+  // Handle click function for next question.
+  // Adds to counter for a round of 10 questions
+  //
   const handleNextQuestion = (e) => {
     e.preventDefault();
     setCounter(counter + 1);
-    document.querySelector('.green').disabled = false;
-    document.querySelector('.red').disabled = false;
   };
 
+  // Timeout function for rendering the data and setting state back to 0
+  //
   const counterTimeout = (e) => {
     props.setChange(props.change + 1);
 
@@ -144,6 +150,9 @@ const Questions = (props) => {
     return timer;
   };
 
+  // Handle click function for Start Over
+  // Checks score against prev highscore after start over
+  //
   const handleStartOver = (e) => {
     e.preventDefault();
     setScore(0);
@@ -153,11 +162,14 @@ const Questions = (props) => {
     }
   };
 
+  // Handles an individual answer choice. Does multiple things
+  // 1. Sets buttons color when chosen to show user the correct and incorrect answers
+  // 2. Increases or descreases score based on choice
+  // 3. Disables buttons for that specific until the next set of questions.
+  //
   const handleChoice = (e) => {
     e.preventDefault();
-    console.log(e);
-    console.log(e.target.textContent);
-    console.log('clicked');
+
     let greenButton = document.querySelector('.green');
     let redButton = document.querySelectorAll('.red');
 
@@ -178,6 +190,8 @@ const Questions = (props) => {
     });
   };
 
+  // Component return based on if data is fetched
+  //
   if (props.fetched) {
     return (
       <section className="questions_container">

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Questions from './components/Questions';
-import confetti from './assets/confetti.gif';
 import './app_root.css';
 
 function App() {
@@ -9,12 +8,12 @@ function App() {
   const [newSet, setNewSet] = useState(0);
   const [isFetching, setIsFetching] = useState(false);
 
+  // Trivia API call that sets Trivia state and shuffles answers using the shuffle function
+  //
   useEffect(() => {
     axios
       .get('https://opentdb.com/api.php?amount=10&type=multiple')
       .then((res) => {
-        console.log(res.data);
-        // setTrivia(res.data.results);
         setTrivia(
           res.data.results.map((result) => ({
             ...result,
@@ -23,7 +22,6 @@ function App() {
             ),
           }))
         );
-        console.log(trivia);
         setIsFetching(true);
       })
       .catch((err) => {
